@@ -26,12 +26,12 @@ router.post('/', upload.single("doc_file"),(req , res) => {
     uri: file_path
   })
 
-  newData.save().then(()=>{
+  newData.save((data)=>{
     res.json({
       status: true, 
-      url: `https://192.168.109.85/upload/${file_path}`
+      url: `https://192.168.109.85/upload/${data}`
     })
-  })
+  });
 });
 
 module.exports = router;
