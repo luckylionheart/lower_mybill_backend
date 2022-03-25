@@ -9,8 +9,8 @@ let file_path = ''
 const storage = multer.diskStorage({
   destination: "./upload/",
   filename: function(req, file, cb){
-    file_path =  date + file.originalname
-    cb(null, date + file.originalname);
+    file_path =  date + "_" + file.originalname.replace( / +/g, '')
+    cb(null, date + file.originalname.replace( / +/g, ''));
   }
 });
 
@@ -23,14 +23,14 @@ router.post('/', upload.single("doc_file"),(req , res) => {
   const newData = new File({
     name: req.file['originalname'],
     type: req.file.mimetype.split('/')[1],
-    uri: file_path
+    uri:  "https://192.168.109.85:5000/api/pdfs/"+file_path
   })
 
-  newData.save((data)=>{
-    res.json({
-      status: true, 
-      url: `https://192.168.109.85/upload/${data}`
-    })
+  newData.save(()=>{
+    let newUrl = "https://192.168.109.85:5000/api/pdfs/"+file_path;
+    console.log(newUrl);
+    let data = {url: newUrl};
+    res.json(data).status(200)
   });
 });
 
