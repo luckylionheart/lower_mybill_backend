@@ -8,6 +8,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
+router.get('/test', (req, res)=> res.json("backend work"));
 // @route    GET api/auth
 // @desc     Get user by token
 // @access   Private

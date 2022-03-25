@@ -17,6 +17,8 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/upload', require('./routes/api/pdf_upload'))
 
+app.use('/api/pdfs', express.static(__dirname + '/upload'))
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
