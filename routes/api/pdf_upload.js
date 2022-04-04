@@ -28,8 +28,8 @@ router.post('/', upload.single("doc_file"),(req , res) => {
 
   newData.save(()=>{
     let newUrl = "https://192.168.109.85:5000/api/pdfs/"+file_path;
-    console.log(newUrl);
-    let data = {url: newUrl};
+    console.log("Successfully uploaded!", newUrl);
+    let data = {url: newUrl, status:200};
     res.json(data).status(200)
   });
 });
